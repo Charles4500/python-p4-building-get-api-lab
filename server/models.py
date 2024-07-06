@@ -1,3 +1,4 @@
+#This is basically where we come do our modelling or just basically designing our database
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import MetaData
 from sqlalchemy_serializer import SerializerMixin
@@ -9,10 +10,12 @@ metadata = MetaData(naming_convention={
 db = SQLAlchemy(metadata=metadata)
 
 class Bakery(db.Model, SerializerMixin):
+    #This will be name or our database which we will be accessing it in front end
     __tablename__ = 'bakeries'
 
     serialize_rules = ('-baked_goods.bakery',)
 
+    #This are just basically variables or just containers of our data --> Which in the front end we are accessing them as parameters
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String)
     created_at = db.Column(db.DateTime, server_default=db.func.now())
